@@ -1,0 +1,10 @@
+{
+	"name": "code2epub",
+	"description": "Converts project source code to EPUB document",
+	"license": "MIT",
+	"authors": ["fuzzy69"],
+	"copyright": "Copyright © 2019, fuzzy69",
+	"dependencies": {
+		"urld": "~>2.0.1"
+	}
+}
