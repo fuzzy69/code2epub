@@ -67,6 +67,33 @@ line-height: 1.2
 margin-bottom: 5pt;
 margin-top: 5pt
 }
+
+.programlisting1 {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -webkit-hyphens: none;
+    -webkit-tap-highlight-color: transparent;
+    background-color: #fbfbfb;
+    box-sizing: border-box;
+    clear: both;
+    color: blue;
+    display: block;
+    font-family: "Droid Sans Mono", Courier, monospace;
+    font-size: 1em;
+    line-height: 1.5em;
+    overflow: auto;
+    overflow-x: unset;
+    overflow-y: unset;
+    text-indent: 0;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    word-wrap: break-word;
+    padding: 0.5em 2em;
+    border-top: #DDD solid 1px;
+    border-bottom: #DDD solid 1px;
+    margin: 0.5em 2em
+}
 `;
 // Page template
 immutable(string) pageTemplate = `<?xml version='1.0' encoding='utf-8'?>
@@ -77,7 +104,7 @@ immutable(string) pageTemplate = `<?xml version='1.0' encoding='utf-8'?>
   </head>
   <body>
     <h1 class="title">%s</h1>
-    <pre class="calibre2">
+    <pre class="programlisting1">
 %s
     </pre>
   </body>
