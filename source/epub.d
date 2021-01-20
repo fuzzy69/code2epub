@@ -175,26 +175,19 @@ immutable(string) nav = `<?xml version='1.0' encoding='utf-8'?>
 </html>
 `;
 
-///
-string replaceHtmlEntities(string html)
+/// Returns string with a safe representation of HTML entities
+string replaceHtmlEntities(string text)
 {
-  return html.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+  return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
 }
 
-///
-string  formatPage(string html)
+/// Returns formatted string ready for including in pre tag
+string formatPage(string text)
 {
-  return html.replaceHtmlEntities.replace("\n", "\n ");
+  return text.replaceHtmlEntities.replace("\n", "\n ");
 }
 
-/** 
- * 
- * Params:
- *   title = 
- *   pages = 
- *   titles = 
- *   outputFilePath = 
- */
+/// Creates an EPUB file
 void createEpub(string title, string[] pages, string[] titles, string outputFilePath, string author, string repoUrl)
 {
     // Create Epub
