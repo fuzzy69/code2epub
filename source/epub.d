@@ -175,15 +175,16 @@ immutable(string) nav = `<?xml version='1.0' encoding='utf-8'?>
 </html>
 `;
 
-/** 
- * 
- * Params:
- *   html = 
- * Returns: 
- */
+///
 string replaceHtmlEntities(string html)
 {
   return html.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+}
+
+///
+string  formatPage(string html)
+{
+  return html.replaceHtmlEntities.replace("\n", "\n ");
 }
 
 /** 
@@ -236,7 +237,8 @@ void createEpub(string title, string[] pages, string[] titles, string outputFile
         am = new ArchiveMember();
         am.name = "EPUB/" ~ pageFileName;
         // Format page
-        page = replaceHtmlEntities(page);
+        // page = replaceHtmlEntities(page);
+        page = formatPage(page);
         string pageHtml = format!pageTemplate(pageTitle, pageTitle, page);
         am.expandedData(pageHtml.dup.representation);
         // am.expandedData(page.dup.representation);
