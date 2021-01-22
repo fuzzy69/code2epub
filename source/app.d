@@ -1,7 +1,7 @@
 import std.algorithm.searching : endsWith, startsWith;
 import std.array : split;
 import std.datetime.systime : Clock;
-import std.file : DirEntry, dirEntries, exists, read, readText, mkdirRecurse, SpanMode, write, getcwd;
+import std.file : DirEntry, dirEntries, exists, isDir, read, readText, mkdirRecurse, SpanMode, write, getcwd;
 import std.getopt : getopt, defaultGetoptPrinter, config, GetOptException;
 import std.path : asRelativePath, baseName, buildPath, dirName;
 import std.process : execute;
@@ -93,6 +93,11 @@ int main(string[] args)
         if (!exists(repoUrl))
         {
             writefln("Invalid path to project source directory %s!", repoUrl);
+            return ExitCode.ERROR;
+        }
+        if (!isDir(repoUrl))
+        {
+            writefln("%s is not a directory!", repoUrl);
             return ExitCode.ERROR;
         }
         // auto chunks = repoUrl.split("/");
