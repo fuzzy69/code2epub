@@ -5,6 +5,7 @@ import std.datetime.systime : Clock;
 import std.file : DirEntry, dirEntries, exists, read, readText, mkdirRecurse, SpanMode, write;
 import std.format : format;
 import std.range : enumerate;
+import std.regex : regex, replaceFirst;
 import std.string : representation, strip, stripRight;
 import std.stdio : writeln;
 import std.zip : ArchiveMember, ZipArchive;
@@ -184,7 +185,8 @@ string replaceHtmlEntities(string text)
 /// Returns formatted string ready for including in pre tag
 string formatPage(string text)
 {
-  return text.replaceHtmlEntities.replace("\n", "\n ");
+  auto re = regex(r"/\*.*[GNU Library General Public License|MIT|BSD].*\*/", "is");
+  return text.replaceHtmlEntities.replace("\n", "\n ").replaceFirst(re, "").strip;
 }
 
 /// Creates an EPUB file
