@@ -185,8 +185,9 @@ string replaceHtmlEntities(string text)
 /// Returns formatted string ready for including in pre tag
 string formatPage(string text)
 {
-  auto re = regex(r"/\*.*[GNU Library General Public License|MIT|BSD].*\*/", "is");
-  return text.replaceHtmlEntities.replace("\n", "\n ").replaceFirst(re, "").strip;
+  // auto re = regex(r"/\*.*[GNU Library General Public License|MIT|BSD].*\*/", "is");
+  // return text.replaceHtmlEntities.replace("\n", "\n ").replaceFirst(re, "").strip;
+  return text.replaceHtmlEntities.replace("\n", "\n ").strip;
 }
 
 /// Creates an EPUB file
