@@ -1,7 +1,7 @@
 import std.algorithm.searching : endsWith, startsWith;
-import std.array : split;
+import std.array : join, split;
 import std.datetime.systime : Clock;
-import std.file : DirEntry, dirEntries, exists, isDir, read, readText, mkdirRecurse, SpanMode, write, getcwd;
+import std.file : DirEntry, dirEntries, exists, isDir, read, readText, mkdirRecurse, SpanMode, write, getcwd, thisExePath;
 import std.getopt : getopt, defaultGetoptPrinter, config, GetOptException;
 import std.path : asRelativePath, baseName, buildPath, dirName;
 import std.process : execute;
@@ -105,7 +105,18 @@ int main(string[] args)
         projectName = repoUrl.baseName;
         repoDirPath = repoUrl;
     }
-
+    // File extensions
+    string[] fileExtensions = [".c", ".cc", ".cpp", ".cxx", ".hxx", ".cs", ".d", ".h", ".hh", ".hpp", ".py"];
+    // immutable(string) fileExtensionsFilePath = "file_extensions.txt";
+    immutable(string) fileExtensionsFilePath = buildPath(thisExePath.dirName, "file_extensions.txt");
+    if (!fileExtensionsFilePath.exists)
+    {
+        fileExtensionsFilePath.write(fileExtensions.join(' '));
+    }
+    else
+    {
+        fileExtensions = fileExtensionsFilePath.readText().split(' ');
+    }
      immutable(string) outputName = (args.length > 2)? args[2] : null;
      // List files
      auto dFiles = dirEntries(repoDirPath, SpanMode.depth);
@@ -113,7 +124,15 @@ int main(string[] args)
      string[] titles;
      foreach (DirEntry dirEntry; dFiles)
      {
-         if (dirEntry.name.toLower.endsWith(".c", ".cc", ".cpp", ".cxx", ".hxx", ".cs", ".d", ".h", ".hh", ".hpp", ".py"))
+         bool hasExtension = false;
+        foreach (string fileExtension; fileExtensions)
+        {
+            hasExtension = dirEntry.name.toLower.endsWith(fileExtension);
+            if (hasExtension)
+            break;
+        }
+        //  if (dirEntry.name.toLower.endsWith(".c", ".cc", ".cpp", ".cxx", ".hxx", ".cs", ".d", ".h", ".hh", ".hpp", ".py"))
+         if (hasExtension)
          {
              writeln(dirEntry.name);
              try
