@@ -105,6 +105,10 @@ int main(string[] args)
         projectName = repoUrl.baseName;
         repoDirPath = repoUrl;
     }
+    writeln(repoDirPath);
+    auto repoDirBase = dirName(repoDirPath);
+    writeln(repoDirBase);
+    // return 0;
     // File extensions
     string[] fileExtensions = [".c", ".cc", ".cpp", ".cxx", ".hxx", ".cs", ".d", ".h", ".hh", ".hpp", ".py"];
     // immutable(string) fileExtensionsFilePath = "file_extensions.txt";
@@ -142,7 +146,9 @@ int main(string[] args)
                  // pages ~= replaceFirst(content, regex(`(?si)/\*(.*?)license(.*?)\*/`), "").strip;
                  pages ~= content;
                  // auto startIndex = outputDir.length > 0? outputDir.length : 0;
-                 titles ~= dirEntry.name[outputDir.length .. $];
+                //  titles ~= dirEntry.name[outputDir.length .. $];
+                 titles ~= dirEntry.name[repoDirBase.length .. $];
+                 writeln(dirEntry.name[repoDirBase.length .. $]);
                  // auto title = asRelativePath(dirEntry.name, outputDir).byChar.;
                  // writeln(title);
                  // titles ~= title.startsWith("/")? title : "/" ~ title;
