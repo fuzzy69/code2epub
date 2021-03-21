@@ -6,7 +6,7 @@
 Compile-time dependencies:
 
 - D language compiler (tested  on DMD64 D Compiler v2.083.0)
-- DUB
+- DUB (optionally)
 
 Run-time dependencies:
 
@@ -16,7 +16,7 @@ Run-time dependencies:
 
 Navigate to a project directory and execute:
 ```
-dmd build
+dub build
 ```
 
 ## Usage
@@ -44,4 +44,3 @@ code2epub https://github.com/fuzzy69/code2epub.git /home/user/Documents Code2Epu
 
 Noticed issues:
 - fix occasional project file path parsing which generates invalid file/project names 
-- improve source code formatting
