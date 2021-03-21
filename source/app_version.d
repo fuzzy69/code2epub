@@ -1,3 +1,3 @@
 module app_version;
 
-immutable(string) VERSION = "2021.2.12.61614";
+immutable(string) VERSION = "2021.3.21.30757";
