@@ -55,7 +55,7 @@ int main(string[] args)
         auto url = parseURL(repoUrl);
         author = url.path.dirName.strip("/");
         projectName = url.path.baseName.stripRight(".git");
-        auto match = getMatch(repoUrl, `github.com/[a-zA-Z0-9\-]+/(.*)$`);
+        auto match = getMatch(repoUrl, `/[a-zA-Z0-9\-]+/(.*)$`);
         if (match == null)
         {
             writefln("Failed to extract project name from %s!", repoUrl);
